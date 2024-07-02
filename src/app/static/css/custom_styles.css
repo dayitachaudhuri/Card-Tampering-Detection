@@ -1,0 +1,12 @@
+.centered-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.centered-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
