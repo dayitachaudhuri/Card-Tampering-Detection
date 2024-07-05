@@ -8,9 +8,9 @@ import cv2
 from PIL import Image
 
 # Adding path to config
-app.config['NEW_FILE'] = 'app/static/generated/uploads'
-app.config['ORIGINAL_FILE'] = 'app/static/generated/original'
-app.config['GENERATED_FILE'] = 'app/static/generated'
+NEW_FILE_PATH = 'app/static/generated/uploads'
+ORIGINAL_FILE_PATH = 'app/static/generated/original'
+GENERATED_FILE_PATH = 'app/static/generated'
 
 # Route to get diff
 @app.route("/", methods=["GET", "POST"])
@@ -30,14 +30,14 @@ def index():
                 
         # Resize and save the uploaded images
         check_image = Image.open(new_file_upload).resize((250,160))
-        check_image.save(os.path.join(app.config['NEW_FILE'], 'image.jpg'))
+        check_image.save(os.path.join(NEW_FILE_PATH, 'image.jpg'))
 
         original_image = Image.open(original_file_upload).resize((250,160))
-        original_image.save(os.path.join(app.config['ORIGINAL_FILE'], 'image.jpg'))
+        original_image.save(os.path.join(ORIGINAL_FILE_PATH, 'image.jpg'))
 
         # Read uploaded and original images as array
-        original_image = cv2.imread(os.path.join(app.config['ORIGINAL_FILE'], 'image.jpg'))
-        uploaded_image = cv2.imread(os.path.join(app.config['NEW_FILE'], 'image.jpg'))
+        original_image = cv2.imread(os.path.join(ORIGINAL_FILE_PATH, 'image.jpg'))
+        uploaded_image = cv2.imread(os.path.join(NEW_FILE_PATH, 'image.jpg'))
 
         # Convert images into grayscale
         original_gray = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
@@ -59,10 +59,10 @@ def index():
             cv2.rectangle(uploaded_image, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
         # Save all output images (if required)
-        cv2.imwrite(os.path.join(app.config['GENERATED_FILE'], 'image_original.jpg'), original_image)
-        cv2.imwrite(os.path.join(app.config['GENERATED_FILE'], 'image_new.jpg'), uploaded_image)
-        cv2.imwrite(os.path.join(app.config['GENERATED_FILE'], 'image_diff.jpg'), diff)
-        cv2.imwrite(os.path.join(app.config['GENERATED_FILE'], 'image_thresh.jpg'), thresh)
+        cv2.imwrite(os.path.join(GENERATED_FILE_PATH, 'image_original.jpg'), original_image)
+        cv2.imwrite(os.path.join(GENERATED_FILE_PATH, 'image_new.jpg'), uploaded_image)
+        cv2.imwrite(os.path.join(GENERATED_FILE_PATH, 'image_diff.jpg'), diff)
+        cv2.imwrite(os.path.join(GENERATED_FILE_PATH, 'image_thresh.jpg'), thresh)
         
         props = {
             "show_result" : True,
