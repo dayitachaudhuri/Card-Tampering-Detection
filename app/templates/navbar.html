@@ -1,14 +1,33 @@
 {% block navbar %}
-<nav
-  style="background-color: #5e72e4"
-  class="lighten-1"
-  role="navigation"
-  style="height: 100px"
->
+
+<nav class="teal lighten-1" role="navigation">
   <div class="nav-wrapper container">
-    <a id="logo-container" class="brand-logo center"
-      ><h5>Image Diff Finder</h5></a
-    >
+    <a id="logo-container" href="#" class="brand-logo">
+      <h5>Data Processing Toolkit</h5>
+    </a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a class="dropdown-trigger" href="#!" data-target="diff-finder-dropdown">Diff Finder<i class="material-icons right"></i></a></li>
+      <li><a class="dropdown-trigger" href="#!" data-target="watermarking-tools-dropdown">Watermarking<i class="material-icons right"></i></a></li>
+    </ul>
   </div>
+
+  <!-- Dropdown Structure -->
+  <ul id="diff-finder-dropdown" class="dropdown-content">
+    <li><a href="/image-diff-finder">Image Diff Finder</a></li>
+  </ul>
+  <ul id="watermarking-tools-dropdown" class="dropdown-content">
+    <li><a href="/image-watermark">Image Watermarking</a></li>
+  </ul>
 </nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems, {
+      coverTrigger: false,
+      alignment: 'left'    
+    });
+  });
+</script>
+
 {% endblock %}
