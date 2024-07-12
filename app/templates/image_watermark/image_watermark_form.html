@@ -1,0 +1,70 @@
+{% block form %}
+
+<form id="upload_form" action="/image-watermark" method="post" class="col s12" enctype="multipart/form-data">
+  <div class="row">
+    <div class="input-field col s3"></div>
+    <div class="input-field col s5"style="margin-left: 20px; margin-top: 100px">
+
+      <!-- Field to upload Cover Image for Watermarking -->
+      <div class="row">
+        <label for="cover_image"><b>Upload Cover Image for Watermarking</b></label>
+        <br />
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>Browse</span>
+            <input type="file" name="cover_image" id="cover_image" />
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Upload file" name="cover_image_name" id="cover_image_name"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dropdown selector to choose between Image Watermark or Text Watermark -->
+      <div class="row">
+        <label for="watermark_type"><b>Select Watermark Type</b></label>
+        <br />
+        <div class="input-field">
+          <select name="watermark_type" id="watermark_type">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="image">Image Watermark</option>
+            <option value="text">Text Watermark</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Field to upload Image Watermark -->
+      <div class="row" id="image_watermark_field">
+        <label for="watermark_image"><b>Upload Image Watermark</b></label>
+        <br />
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>Browse</span>
+            <input type="file" name="watermark_image" id="watermark_image" />
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Upload file" name="watermark_image_name" id="watermark_image_name"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- Field to add Watermark Text -->
+      <div class="row" id="text_watermark_field">
+        <label for="watermark_text"><b>Enter Watermark Text</b></label>
+        <br />
+        <div class="input-field">
+          <input type="text" name="watermark_text" id="watermark_text" placeholder="Enter text for watermark" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row center">
+    <button type="submit" class="btn-large" onClick="return validateForm()">
+      Check
+    </button>
+  </div>
+</form>
+
+{% endblock %}

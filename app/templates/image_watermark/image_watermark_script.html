@@ -1,0 +1,62 @@
+{% block script %}
+
+<script type="text/javascript">
+
+  // Populate File Name for Cover Image field whenever a new file is uploaded.
+  document.getElementById("cover_image").onchange = function () {
+    document.getElementById("cover_image_name").value = this.value.slice(12,100);
+  };
+  // Populate File Name for Watermark Image Field whenever a new file is uploaded.
+  document.getElementById("watermark_image").onchange = function () {
+    document.getElementById("watermark_image_name").value = this.value.slice(12, 100);
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+    const watermarkTypeSelect = document.getElementById('watermark_type');
+    const imageWatermarkField = document.getElementById('image_watermark_field');
+    const textWatermarkField = document.getElementById('text_watermark_field');
+
+    // Toggle Between Watermark Image Field and Watermark Text Field visibility based on the selected value of
+    // Watermark Type field in the form.
+    function toggleWatermarkFields() {
+      imageWatermarkField.style.display = 'none';
+      textWatermarkField.style.display = 'none';
+      if (watermarkTypeSelect.value === 'image') {
+        imageWatermarkField.style.display = 'block';
+      } else if (watermarkTypeSelect.value === 'text') {
+        textWatermarkField.style.display = 'block';
+      }
+    }
+    watermarkTypeSelect.addEventListener('change', toggleWatermarkFields);
+    toggleWatermarkFields();
+  });
+
+  // Function to Validate Form Data before submission.
+  function validateForm() {
+    var coverImage = document.getElementById('cover_image').value;
+    var watermarkType = document.getElementById('watermark_type').value;
+    var watermarkImage = document.getElementById('watermark_image').value;
+    var watermarkText = document.getElementById('watermark_text').value;
+
+    if (watermarkType === '') {
+      alert('Please select a watermark type.');
+    }
+    else if (coverImage === '') {
+      alert('Please upload a cover image.');
+    }
+    else if (watermarkType === 'image' && watermarkImage === '') {
+      alert('Please upload an image for the watermark.');
+    }
+    else if (watermarkType === 'text' && watermarkText === '') {
+      alert('Please enter text for the watermark.');
+    }
+    else{
+      return true;
+    }
+    return false;
+  }
+</script>
+
+{% endblock %}

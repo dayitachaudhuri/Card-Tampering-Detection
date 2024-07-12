@@ -1,0 +1,11 @@
+{% block result %}
+
+<div class="centered-row" style="text-align: center; padding: 50px">
+  <div class="centered-col">
+    <img id="watermarked_image" src="{{watermarked_image}}" style="height: 500px"/>
+    <br/>
+    <a href="{{ watermarked_image }}" download="watermarked_image.png" class="btn-large" style="background-color: #e4695e; margin-top: 20px">Download Image</a>
+  </div>
+</div>
+
+{% endblock %}
