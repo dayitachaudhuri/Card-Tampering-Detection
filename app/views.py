@@ -111,7 +111,7 @@ def imageWatermark():
             cover_image = Image.open(cover_image_ref)
             
             # Convert Cover Image to numpy array of required type.
-            cover_image = np.array(cover_image.convert('RGB'))
+            cover_image = np.array(cover_image.convert('RGB').resize((250,160)))
             cover_image = cv2.cvtColor(cover_image, cv2.COLOR_RGB2BGR)
             
             # CASE 1 - If User Requests for Image Watermark.
@@ -124,7 +124,7 @@ def imageWatermark():
                 logo_image = Image.open(logo_image_ref)
                 
                 # Convert Watermarking Image to numpy array of required type.
-                logo_image = np.array(logo_image.convert('RGB'))
+                logo_image = np.array(logo_image.convert('RGB').resize((250,160)))
                 logo_image = cv2.cvtColor(logo_image, cv2.COLOR_RGB2BGR)
 
                 # Find  dimensions of cover image and watermarking image and determine the center of the cover image.
@@ -148,7 +148,7 @@ def imageWatermark():
                 cover_image[top_y: bottom_y, left_x: right_x] = result
             
             # CASE 2 - If User Requests for Text Watermark.
-            elif watermark_type == "Text":
+            elif watermark_type == "text":
                 
                 # Get Watermark Text.
                 watermark_text = request.form["watermark_text"]
